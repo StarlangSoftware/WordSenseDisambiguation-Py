@@ -8,5 +8,6 @@ setup(
     license='',
     author='olcaytaner',
     author_email='olcay.yildiz@ozyegin.edu.tr',
-    description='Word Sense Disambiguation Library'
+    description='Word Sense Disambiguation Library',
+    install_requires = ['NlpToolkit-AnnotatedSentence', 'NlpToolkit-AnnotatedTree']
 )
