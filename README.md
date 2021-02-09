@@ -65,17 +65,17 @@ Detailed Description
 In order to sense annotate a parse tree, one can use autoSemantic method of the TurkishTreeAutoSemantic class.
 
 	parseTree = ...
-	wordNet = WordNet();
-	fsm = FsmMorphologicalAnalyzer();
-	turkishAutoSemantic = TurkishTreeAutoSemantic(wordnet, fsm);
-	turkishAutoSemantic.autoSemantic();
+	wordNet = WordNet()
+	fsm = FsmMorphologicalAnalyzer()
+	turkishAutoSemantic = TurkishTreeAutoSemantic(wordnet, fsm)
+	turkishAutoSemantic.autoSemantic()
 
 ## Sentence
 
 In order to sense annotate a parse tree, one can use autoSemantic method of the TurkishSentenceAutoSemantic class.
 
 	sentence = ...
-	wordNet = WordNet();
-	fsm = FsmMorphologicalAnalyzer();
-	turkishAutoSemantic = TurkishSentenceAutoSemantic(wordnet, fsm);
-	turkishAutoSemantic.autoSemantic();
+	wordNet = WordNet()
+	fsm = FsmMorphologicalAnalyzer()
+	turkishAutoSemantic = TurkishSentenceAutoSemantic(wordnet, fsm)
+	turkishAutoSemantic.autoSemantic()
