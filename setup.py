@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name='NlpToolkit-WordSenseDisambiguation',
-    version='1.0.0',
+    version='1.0.1',
     packages=['WordSenseDisambiguation', 'WordSenseDisambiguation.Sentence', 'WordSenseDisambiguation.ParseTree'],
     url='https://github.com/StarlangSoftware/WordSenseDisambiguation-Py',
     license='',
