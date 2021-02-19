@@ -3,7 +3,7 @@ from WordNet.WordNet import WordNet
 
 from AnnotatedSentence.AnnotatedSentence import AnnotatedSentence
 from AnnotatedSentence.AnnotatedWord import AnnotatedWord
-from AnnotatedSentence.AutoProcessor.AutoSemantic.SentenceAutoSemantic import SentenceAutoSemantic
+from WordSenseDisambiguation.Sentence.SentenceAutoSemantic import SentenceAutoSemantic
 
 
 class TurkishAutoSemantic(SentenceAutoSemantic):
