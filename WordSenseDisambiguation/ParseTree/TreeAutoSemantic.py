@@ -28,20 +28,23 @@ class TreeAutoSemantic:
         synSets = wordNet.constructSynSets(current.getMorphologicalParseAt(0).getWord().getName(),
                     current.getMorphologicalParseAt(0), current.getMetamorphicParseAt(0), fsm)
         if twoPrevious is not None and twoPrevious.getMorphologicalParseAt(0) is not None and previous.getMorphologicalParseAt(0) is not None:
-            synSets.extend(wordNet.constructIdiomSynSets(twoPrevious.getMorphologicalParseAt(0), previous.getMorphologicalParseAt(0), current.getMorphologicalParseAt(0),
-                        twoPrevious.getMetamorphicParseAt(0), previous.getMetamorphicParseAt(0), current.getMetamorphicParseAt(0), fsm))
+            synSets.extend(wordNet.constructIdiomSynSets(fsm, twoPrevious.getMorphologicalParseAt(0), twoPrevious.getMetamorphicParseAt(0),
+                                                         previous.getMorphologicalParseAt(0), previous.getMetamorphicParseAt(0),
+                                                         current.getMorphologicalParseAt(0), current.getMetamorphicParseAt(0)))
         if previous is not None and previous.getMorphologicalParseAt(0) is not None and next is not None and next.getMorphologicalParseAt(0) is not None:
-            synSets.extend(wordNet.constructIdiomSynSets(previous.getMorphologicalParseAt(0), current.getMorphologicalParseAt(0), next.getMorphologicalParseAt(0),
-                        previous.getMetamorphicParseAt(0), current.getMetamorphicParseAt(0), next.getMetamorphicParseAt(0), fsm))
+            synSets.extend(wordNet.constructIdiomSynSets(fsm, previous.getMorphologicalParseAt(0), previous.getMetamorphicParseAt(0),
+                                                         current.getMorphologicalParseAt(0), current.getMetamorphicParseAt(0),
+                                                         next.getMorphologicalParseAt(0), next.getMetamorphicParseAt(0)))
         if next is not None and next.getMorphologicalParseAt(0) is not None and twoNext is not None and twoNext.getMorphologicalParseAt(0) is not None:
-            synSets.extend(wordNet.constructIdiomSynSets(current.getMorphologicalParseAt(0), next.getMorphologicalParseAt(0), twoNext.getMorphologicalParseAt(0),
-                        current.getMetamorphicParseAt(0), next.getMetamorphicParseAt(0), twoNext.getMetamorphicParseAt(0), fsm))
+            synSets.extend(wordNet.constructIdiomSynSets(fsm, current.getMorphologicalParseAt(0), current.getMetamorphicParseAt(0),
+                                                         next.getMorphologicalParseAt(0), next.getMetamorphicParseAt(0),
+                                                         twoNext.getMorphologicalParseAt(0), twoNext.getMetamorphicParseAt(0)))
         if previous is not None and previous.getMorphologicalParseAt(0) is not None:
-            synSets.extend(wordNet.constructIdiomSynSets(previous.getMorphologicalParseAt(0), current.getMorphologicalParseAt(0),
-                        previous.getMetamorphicParseAt(0), current.getMetamorphicParseAt(0), fsm))
+            synSets.extend(wordNet.constructIdiomSynSets(fsm, previous.getMorphologicalParseAt(0), previous.getMetamorphicParseAt(0),
+                                                         current.getMorphologicalParseAt(0), current.getMetamorphicParseAt(0)))
         if next is not None and next.getMorphologicalParseAt(0) is not None:
-            synSets.extend(wordNet.constructIdiomSynSets(current.getMorphologicalParseAt(0), next.getMorphologicalParseAt(0),
-                        current.getMetamorphicParseAt(0), next.getMetamorphicParseAt(0), fsm))
+            synSets.extend(wordNet.constructIdiomSynSets(fsm, current.getMorphologicalParseAt(0), current.getMetamorphicParseAt(0),
+                                                         next.getMorphologicalParseAt(0), next.getMetamorphicParseAt(0)))
         return synSets
 
     def autoSemantic(self, parseTree: ParseTreeDrawable):

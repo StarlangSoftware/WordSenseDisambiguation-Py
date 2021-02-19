@@ -36,20 +36,23 @@ class SentenceAutoSemantic:
         synSets = wordNet.constructSynSets(current.getParse().getWord().getName(),
                 current.getParse(), current.getMetamorphicParse(), fsm)
         if twoPrevious is not None and twoPrevious.getParse() is not None and previous.getParse() is not None:
-            synSets.extend(wordNet.constructIdiomSynSets(twoPrevious.getParse(), previous.getParse(), current.getParse(),
-                    twoPrevious.getMetamorphicParse(), previous.getMetamorphicParse(), current.getMetamorphicParse(), fsm))
+            synSets.extend(wordNet.constructIdiomSynSets(fsm, twoPrevious.getParse(), twoPrevious.getMetamorphicParse(),
+                                                         previous.getParse(), previous.getMetamorphicParse(),
+                                                         current.getParse(), current.getMetamorphicParse()))
         if previous is not None and previous.getParse() is not None and next is not None and next.getParse() is not None:
-            synSets.extend(wordNet.constructIdiomSynSets(previous.getParse(), current.getParse(), next.getParse(),
-                    previous.getMetamorphicParse(), current.getMetamorphicParse(), next.getMetamorphicParse(), fsm))
+            synSets.extend(wordNet.constructIdiomSynSets(fsm, previous.getParse(), previous.getMetamorphicParse(),
+                                                         current.getParse(), current.getMetamorphicParse(),
+                                                         next.getParse(), next.getMetamorphicParse()))
         if next is not None and next.getParse() is not None and twoNext is not None and twoNext.getParse() is not None:
-            synSets.extend(wordNet.constructIdiomSynSets(current.getParse(), next.getParse(), twoNext.getParse(),
-                    current.getMetamorphicParse(), next.getMetamorphicParse(), twoNext.getMetamorphicParse(), fsm))
+            synSets.extend(wordNet.constructIdiomSynSets(fsm, current.getParse(), current.getMetamorphicParse(),
+                                                         next.getParse(), next.getMetamorphicParse(),
+                                                         twoNext.getParse(), twoNext.getMetamorphicParse()))
         if previous is not None and previous.getParse() is not None:
-            synSets.extend(wordNet.constructIdiomSynSets(previous.getParse(), current.getParse(),
-                    previous.getMetamorphicParse(), current.getMetamorphicParse(), fsm))
+            synSets.extend(wordNet.constructIdiomSynSets(fsm, previous.getParse(), previous.getMetamorphicParse(),
+                                                         current.getParse(), current.getMetamorphicParse()))
         if next is not None and next.getParse() is not None:
-            synSets.extend(wordNet.constructIdiomSynSets(current.getParse(), next.getParse(),
-                    current.getMetamorphicParse(), next.getMetamorphicParse(), fsm))
+            synSets.extend(wordNet.constructIdiomSynSets(fsm, current.getParse(), current.getMetamorphicParse(),
+                                                         next.getParse(), next.getMetamorphicParse()))
         return synSets
 
     def autoSemantic(self, sentence: AnnotatedSentence):

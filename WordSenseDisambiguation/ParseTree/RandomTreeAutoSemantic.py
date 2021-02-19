@@ -1,4 +1,5 @@
 from random import randrange
+import random
 
 from AnnotatedSentence.AnnotatedWord import ViewLayerType
 from AnnotatedTree.ParseTreeDrawable import ParseTreeDrawable
@@ -20,6 +21,7 @@ class RandomTreeAutoSemantic(TreeAutoSemantic):
         self.__turkishWordNet = turkishWordNet
 
     def autoLabelSingleSemantics(self, parseTree: ParseTreeDrawable) -> bool:
+        random.seed(1)
         nodeDrawableCollector = NodeDrawableCollector(parseTree.getRoot(), IsTurkishLeafNode())
         leafList = nodeDrawableCollector.collect()
         for i in range(len(leafList)):

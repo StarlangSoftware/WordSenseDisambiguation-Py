@@ -1,4 +1,5 @@
 from random import randrange
+import random
 
 from AnnotatedSentence.AnnotatedSentence import AnnotatedSentence
 from MorphologicalAnalysis.FsmMorphologicalAnalyzer import FsmMorphologicalAnalyzer
@@ -22,7 +23,7 @@ class Lesk(SentenceAutoSemantic):
             words1 = (synSet.getLongDefinition() + " " + synSet.getExample()).split(" ")
         else:
             words1 = synSet.getLongDefinition().split(" ")
-        words2 = sentence.toWords().split(" ")
+        words2 = sentence.toString().split(" ")
         count = 0
         for word1 in words1:
             for word2 in words2:
@@ -31,6 +32,7 @@ class Lesk(SentenceAutoSemantic):
         return count
 
     def autoLabelSingleSemantics(self, sentence: AnnotatedSentence) -> bool:
+        random.seed(1)
         done = False
         for i in range(sentence.wordCount()):
             synSets = self.getCandidateSynSets(self.__turkishWordNet, self.__fsm, sentence, i)

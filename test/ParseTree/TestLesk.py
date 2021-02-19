@@ -7,7 +7,7 @@ from AnnotatedTree.TreeBankDrawable import TreeBankDrawable
 from MorphologicalAnalysis.FsmMorphologicalAnalyzer import FsmMorphologicalAnalyzer
 from WordNet.WordNet import WordNet
 
-from WordSenseDisambiguation.Sentence.Lesk import Lesk
+from WordSenseDisambiguation.ParseTree.Lesk import Lesk
 
 
 class TestLesk(unittest.TestCase):
@@ -40,7 +40,7 @@ class TestLesk(unittest.TestCase):
                 if parseNode1.getLayerData(ViewLayerType.SEMANTICS) is not None and parseNode1.getLayerData(ViewLayerType.SEMANTICS) == parseNode2.getLayerData(ViewLayerType.SEMANTICS):
                     correct = correct + 1
         self.assertEqual(475, total)
-        self.assertEqual(251, correct)
+        self.assertEqual(252, correct)
 
 
 if __name__ == '__main__':

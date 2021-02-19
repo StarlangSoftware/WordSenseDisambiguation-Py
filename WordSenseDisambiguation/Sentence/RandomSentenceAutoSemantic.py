@@ -1,4 +1,4 @@
-from random import randrange
+import random
 
 from AnnotatedSentence.AnnotatedSentence import AnnotatedSentence
 from MorphologicalAnalysis.FsmMorphologicalAnalyzer import FsmMorphologicalAnalyzer
@@ -17,8 +17,9 @@ class RandomSentenceAutoSemantic(SentenceAutoSemantic):
         self.__fsm = fsm
 
     def autoLabelSingleSemantics(self, sentence: AnnotatedSentence) -> bool:
+        random.seed(1)
         for i in range(sentence.wordCount()):
             synSets = self.getCandidateSynSets(self.__turkishWordNet, self.__fsm, sentence, i)
             if len(synSets) > 0:
-                sentence.getWord(i).setSemantic(synSets[randrange(len(synSets))].getId())
+                sentence.getWord(i).setSemantic(synSets[random.randrange(len(synSets))].getId())
         return True

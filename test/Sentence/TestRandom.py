@@ -32,7 +32,7 @@ class TestRandom(unittest.TestCase):
                 if word1.getSemantic() is not None and word1.getSemantic() == word2.getSemantic():
                     correct = correct + 1
         self.assertEqual(549, total)
-        self.assertEqual(258, correct)
+        self.assertEqual(269, correct)
 
 
 if __name__ == '__main__':

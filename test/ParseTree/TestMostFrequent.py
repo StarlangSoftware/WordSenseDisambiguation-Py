@@ -40,7 +40,7 @@ class TestMostFrequent(unittest.TestCase):
                 if parseNode1.getLayerData(ViewLayerType.SEMANTICS) is not None and parseNode1.getLayerData(ViewLayerType.SEMANTICS) == parseNode2.getLayerData(ViewLayerType.SEMANTICS):
                     correct = correct + 1
         self.assertEqual(475, total)
-        self.assertEqual(251, correct)
+        self.assertEqual(260, correct)
 
 
 if __name__ == '__main__':
