@@ -32,6 +32,10 @@ To check if you have a compatible version of Python installed, use the following
     
 You can find the latest version of Python [here](https://www.python.org/downloads/).
 
+## Pip Install
+
+	pip3 install NlpToolkit-WordSenseDisambiguation
+
 ### Git
 
 Install the [latest version of Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git).
