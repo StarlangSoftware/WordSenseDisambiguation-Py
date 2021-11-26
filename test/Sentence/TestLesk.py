@@ -13,8 +13,8 @@ class TestLesk(unittest.TestCase):
     wordNet: WordNet
 
     def setUp(self) -> None:
-        self.fsm = FsmMorphologicalAnalyzer("../../turkish_dictionary.txt", "../../turkish_misspellings.txt", "../../turkish_finite_state_machine.xml")
-        self.wordNet = WordNet("../../turkish_wordnet.xml")
+        self.fsm = FsmMorphologicalAnalyzer()
+        self.wordNet = WordNet()
 
     def test_Accuracy(self):
         correct = 0

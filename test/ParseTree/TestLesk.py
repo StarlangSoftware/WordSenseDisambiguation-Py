@@ -16,8 +16,8 @@ class TestLesk(unittest.TestCase):
     wordNet: WordNet
 
     def setUp(self) -> None:
-        self.fsm = FsmMorphologicalAnalyzer("../../turkish_dictionary.txt", "../../turkish_misspellings.txt", "../../turkish_finite_state_machine.xml")
-        self.wordNet = WordNet("../../turkish_wordnet.xml")
+        self.fsm = FsmMorphologicalAnalyzer()
+        self.wordNet = WordNet()
 
     def test_Accuracy(self):
         correct = 0
@@ -40,7 +40,7 @@ class TestLesk(unittest.TestCase):
                 if parseNode1.getLayerData(ViewLayerType.SEMANTICS) is not None and parseNode1.getLayerData(ViewLayerType.SEMANTICS) == parseNode2.getLayerData(ViewLayerType.SEMANTICS):
                     correct = correct + 1
         self.assertEqual(475, total)
-        self.assertEqual(252, correct)
+        self.assertEqual(247, correct)
 
 
 if __name__ == '__main__':

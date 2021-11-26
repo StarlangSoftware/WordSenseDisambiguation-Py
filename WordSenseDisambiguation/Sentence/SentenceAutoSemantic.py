@@ -56,5 +56,4 @@ class SentenceAutoSemantic:
         return synSets
 
     def autoSemantic(self, sentence: AnnotatedSentence):
-        if self.autoLabelSingleSemantics(sentence):
-            sentence.save()
+        self.autoLabelSingleSemantics(sentence)

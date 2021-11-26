@@ -13,8 +13,8 @@ class MostFrequent(unittest.TestCase):
     wordNet: WordNet
 
     def setUp(self) -> None:
-        self.fsm = FsmMorphologicalAnalyzer("../../turkish_dictionary.txt", "../../turkish_misspellings.txt", "../../turkish_finite_state_machine.xml")
-        self.wordNet = WordNet("../../turkish_wordnet.xml")
+        self.fsm = FsmMorphologicalAnalyzer()
+        self.wordNet = WordNet()
 
     def test_Accuracy(self):
         correct = 0
@@ -33,7 +33,7 @@ class MostFrequent(unittest.TestCase):
                 if word1.getSemantic() is not None and word1.getSemantic() == word2.getSemantic():
                     correct = correct + 1
         self.assertEqual(549, total)
-        self.assertEqual(278, correct)
+        self.assertEqual(277, correct)
 
 
 if __name__ == '__main__':

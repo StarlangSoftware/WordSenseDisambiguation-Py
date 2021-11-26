@@ -48,5 +48,4 @@ class TreeAutoSemantic:
         return synSets
 
     def autoSemantic(self, parseTree: ParseTreeDrawable):
-        if self.autoLabelSingleSemantics(parseTree):
-            parseTree.save()
+        self.autoLabelSingleSemantics(parseTree)
