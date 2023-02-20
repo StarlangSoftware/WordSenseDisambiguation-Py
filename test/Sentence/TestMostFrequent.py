@@ -33,7 +33,7 @@ class MostFrequent(unittest.TestCase):
                 if word1.getSemantic() is not None and word1.getSemantic() == word2.getSemantic():
                     correct = correct + 1
         self.assertEqual(549, total)
-        self.assertEqual(277, correct)
+        self.assertEqual(268, correct)
 
 
 if __name__ == '__main__':

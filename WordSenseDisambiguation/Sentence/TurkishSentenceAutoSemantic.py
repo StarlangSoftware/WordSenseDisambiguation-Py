@@ -8,7 +8,7 @@ from WordSenseDisambiguation.Sentence.SentenceAutoSemantic import SentenceAutoSe
 
 class TurkishAutoSemantic(SentenceAutoSemantic):
 
-    __turkishWordNet: WordNet
+    __turkish_wordnet: WordNet
     __fsm: FsmMorphologicalAnalyzer
 
     def __init__(self, turkishWordNet: WordNet, fsm: FsmMorphologicalAnalyzer):
@@ -23,7 +23,7 @@ class TurkishAutoSemantic(SentenceAutoSemantic):
         fsm : FsmMorphologicalAnalyzer
             Turkish morphological analyzer
         """
-        self.__turkishWordNet = turkishWordNet
+        self.__turkish_wordnet = turkishWordNet
         self.__fsm = fsm
 
     def autoLabelSingleSemantics(self, sentence: AnnotatedSentence):
@@ -41,71 +41,75 @@ class TurkishAutoSemantic(SentenceAutoSemantic):
         sentence : AnnotatedSentence
             The sentence for which word sense disambiguation will be determined automatically.
         """
+        two_previous = None
+        previous = None
+        next = None
+        two_next = None
         for i in range(sentence.wordCount()):
             current = sentence.getWord(i)
             if i > 1:
-                twoPrevious = sentence.getWord(i - 2)
+                two_previous = sentence.getWord(i - 2)
             if i > 0:
                 previous = sentence.getWord(i - 1)
             if i != sentence.wordCount() - 1:
                 next = sentence.getWord(i + 1)
             if i < sentence.wordCount() - 2:
-                twoNext = sentence.getWord(i + 2)
+                two_next = sentence.getWord(i + 2)
             if isinstance(current, AnnotatedWord) and current.getSemantic() is None and current.getParse() is not None:
-                if twoPrevious is not None and isinstance(twoPrevious, AnnotatedWord) \
-                        and twoPrevious.getParse() is not None and isinstance(previous, AnnotatedWord) \
+                if two_previous is not None and isinstance(two_previous, AnnotatedWord) \
+                        and two_previous.getParse() is not None and isinstance(previous, AnnotatedWord) \
                         and previous.getParse() is not None:
-                    idioms = self.__turkishWordNet.constructIdiomSynSets(self.__fsm, twoPrevious.getParse(),
-                                                                         twoPrevious.getMetamorphicParse(),
-                                                                         previous.getParse(),
-                                                                         previous.getMetamorphicParse(),
-                                                                         current.getParse(),
-                                                                         current.getMetamorphicParse())
+                    idioms = self.__turkish_wordnet.constructIdiomSynSets(self.__fsm, two_previous.getParse(),
+                                                                          two_previous.getMetamorphicParse(),
+                                                                          previous.getParse(),
+                                                                          previous.getMetamorphicParse(),
+                                                                          current.getParse(),
+                                                                          current.getMetamorphicParse())
                     if len(idioms) == 1:
                         current.setSemantic(idioms[0].getId())
                         continue
                 if previous is not None and isinstance(previous, AnnotatedWord) \
                         and previous.getParse() is not None and next is not None and isinstance(next, AnnotatedWord) \
                         and next.getParse() is not None:
-                    idioms = self.__turkishWordNet.constructIdiomSynSets(self.__fsm, previous.getParse(),
-                                                                         previous.getMetamorphicParse(),
-                                                                         current.getParse(),
-                                                                         current.getMetamorphicParse(),
-                                                                         next.getParse(),
-                                                                         next.getMetamorphicParse())
+                    idioms = self.__turkish_wordnet.constructIdiomSynSets(self.__fsm, previous.getParse(),
+                                                                          previous.getMetamorphicParse(),
+                                                                          current.getParse(),
+                                                                          current.getMetamorphicParse(),
+                                                                          next.getParse(),
+                                                                          next.getMetamorphicParse())
                     if len(idioms) == 1:
                         current.setSemantic(idioms[0].getId())
                         continue
                 if next is not None and isinstance(next, AnnotatedWord) \
-                        and next.getParse() is not None and twoNext is not None and isinstance(twoNext, AnnotatedWord) \
-                        and twoNext.getParse() is not None:
-                    idioms = self.__turkishWordNet.constructIdiomSynSets(self.__fsm, current.getParse(),
-                                                                         current.getMetamorphicParse(),
-                                                                         next.getParse(),
-                                                                         next.getMetamorphicParse(),
-                                                                         twoNext.getParse(),
-                                                                         twoNext.getMetamorphicParse())
+                        and next.getParse() is not None and two_next is not None and isinstance(two_next, AnnotatedWord) \
+                        and two_next.getParse() is not None:
+                    idioms = self.__turkish_wordnet.constructIdiomSynSets(self.__fsm, current.getParse(),
+                                                                          current.getMetamorphicParse(),
+                                                                          next.getParse(),
+                                                                          next.getMetamorphicParse(),
+                                                                          two_next.getParse(),
+                                                                          two_next.getMetamorphicParse())
                     if len(idioms) == 1:
                         current.setSemantic(idioms[0].getId())
                         continue
                 if previous is not None and isinstance(previous, AnnotatedWord) and previous.getParse() is not None:
-                    idioms = self.__turkishWordNet.constructIdiomSynSets(self.__fsm, previous.getParse(),
-                                                                         previous.getMetamorphicParse(),
-                                                                         current.getParse(),
-                                                                         current.getMetamorphicParse())
+                    idioms = self.__turkish_wordnet.constructIdiomSynSets(self.__fsm, previous.getParse(),
+                                                                          previous.getMetamorphicParse(),
+                                                                          current.getParse(),
+                                                                          current.getMetamorphicParse())
                     if len(idioms) == 1:
                         current.setSemantic(idioms[0].getId())
                         continue
                 if next is not None and isinstance(next, AnnotatedWord) and next.getParse() is not None:
-                    idioms = self.__turkishWordNet.constructIdiomSynSets(self.__fsm, current.getParse(),
-                                                                         current.getMetamorphicParse(),
-                                                                         next.getParse(),
-                                                                         next.getMetamorphicParse())
+                    idioms = self.__turkish_wordnet.constructIdiomSynSets(self.__fsm, current.getParse(),
+                                                                          current.getMetamorphicParse(),
+                                                                          next.getParse(),
+                                                                          next.getMetamorphicParse())
                     if len(idioms) == 1:
                         current.setSemantic(idioms[0].getId())
                         continue
-                meanings = self.__turkishWordNet.constructSynSets(current.getParse().getWord().getName(),
-                                                                  current.getParse(), current.getMetamorphicParse(),
-                                                                  self.__fsm)
+                meanings = self.__turkish_wordnet.constructSynSets(current.getParse().getWord().getName(),
+                                                                   current.getParse(), current.getMetamorphicParse(),
+                                                                   self.__fsm)
                 if current.getSemantic() is None and len(meanings) == 1:
                     current.setSemantic(meanings[0].getId())
