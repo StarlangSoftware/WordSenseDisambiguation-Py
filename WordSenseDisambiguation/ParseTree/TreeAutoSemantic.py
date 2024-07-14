@@ -16,6 +16,18 @@ class TreeAutoSemantic:
                             fsm: FsmMorphologicalAnalyzer,
                             leafList: list,
                             index: int) -> list:
+        """
+        The method constructs all possible senses for the word at position index in the given parse tree. The method checks
+        the previous two words and the current word; the previous, current and next word, current and the next
+        two words to add three word multiword sense (that occurs in the Turkish wordnet) to the result list. The
+        method then check the previous word and current word; current word and the next word to add a two word multiword
+        sense to the result list. Lastly, the method adds all possible senses of the current word to the result list.
+        :param wordNet: Turkish wordnet
+        :param fsm: Turkish morphological analyzer
+        :param leafList: Leaves of the parse tree to be semantically disambiguated.
+        :param index: Position of the word to be disambiguated.
+        :return: All possible senses for the word at position index in the given parse tree.
+        """
         two_previous = None
         previous = None
         two_next = None
@@ -52,4 +64,8 @@ class TreeAutoSemantic:
         return syn_sets
 
     def autoSemantic(self, parseTree: ParseTreeDrawable):
+        """
+        The method tries to semantic annotate as many words in the parse tree as possible.
+        :param parseTree: Parse tree to be semantically disambiguated.
+        """
         self.autoLabelSingleSemantics(parseTree)
