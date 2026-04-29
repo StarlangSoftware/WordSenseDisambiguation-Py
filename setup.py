@@ -5,8 +5,8 @@ this_directory = Path(__file__).parent
 long_description = (this_directory / "README.md").read_text(encoding="utf-8")
 
 setup(
-    name='NlpToolkit-WordSenseDisambiguation',
-    version='1.0.3',
+    name='nlptoolkit_wordsensedisambiguation',
+    version='1.0.4',
     packages=['WordSenseDisambiguation', 'WordSenseDisambiguation.Sentence', 'WordSenseDisambiguation.ParseTree'],
     url='https://github.com/StarlangSoftware/WordSenseDisambiguation-Py',
     license='',
