@@ -59,7 +59,7 @@ You can also see [Cython](https://github.com/starlangsoftware/WordSenseDisambigu
 
 ## Requirements
 
-* [Python 3.7 or higher](#python)
+* [Python 3.13 or higher](#python)
 * [Git](#git)
 
 ### Python 
@@ -72,7 +72,7 @@ You can find the latest version of Python [here](https://www.python.org/download
 
 ## Pip Install
 
-	pip3 install NlpToolkit-WordSenseDisambiguation
+	pip3.13 install NlpToolkit-WordSenseDisambiguation
 
 ### Git
 
